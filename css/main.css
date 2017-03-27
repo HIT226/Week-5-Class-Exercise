@@ -16,7 +16,3 @@ website: {portfolio}
 @import 'vendor/smart-grid.css';
 @import 'lib/card.css';
 @import 'lib/base.css';
-
-/* Our JS rules are going to live here*/
-
-@import 'lib/test.css';
