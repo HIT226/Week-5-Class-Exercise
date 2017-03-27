@@ -1,7 +1,7 @@
 /**
 * TODO: Calculate the total for each student
 *
-* TODO: Highlight rows under thee following rules (background colour):
+* TODO: Highlight rows under the following rules (background colour):
 *
 * 85% >     #53f442
 * 75% > 84% #a4f99a
