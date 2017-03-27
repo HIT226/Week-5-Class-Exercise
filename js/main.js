@@ -28,17 +28,24 @@ var resultsData = resultsTable.querySelector('tbody');
 //get each row
 var students = resultsData.querySelectorAll('tr');
 
+//calculate and add totals
 students.forEach(function(student){
   var courseResults = student.querySelectorAll('td');
   var total = 0;
 
   courseResults.forEach(function(mark){
-    console.log(mark.textContent);
     total += Number(mark.textContent);
   });
 
   var totalCell = courseResults[courseResults.length - 1];
   totalCell.textContent = total;
+
+});
+
+//Highlight based on totals
+students.forEach(function(student){
+  var totalCol = student.querySelector('td:last-child');
+  var total = Number(totalCol.textContent);
 
   switch (true) {
     case total >= 85:
@@ -55,7 +62,9 @@ students.forEach(function(student){
       break;
     default:
       student.style.backgroundColor = '#ffffff';
-
   }
 
 });
+
+
+// count how many students achieved each grade
