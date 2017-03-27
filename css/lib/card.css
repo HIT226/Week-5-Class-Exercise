@@ -1,0 +1,87 @@
+/*
+	These are the card components from last week.
+	Create a new content card component that allows users to click anywhere on the card, instead of just the "read more" button at the bottom
+
+	tip: You will need to use an `a` tag with `display:block;` set, and a href (jet set it to `#` for now as we don't care where it goes)
+*/
+
+.card__grid {
+  padding-top: 40px;
+  padding-bottom: 14px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card__grid::after {
+  /*Clear floats using the clearfix method as overflow: hidden will hide shadows*/
+  /* [https://css-tricks.com/snippets/css/clear-fix/] */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  background-color: white;
+  color: black;
+  color: rgba(0, 0, 0, 0.87);
+  /*Opacity for browsers that support it*/
+  /*Card display styles*/
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  /*prevent image from displaying beyond round borders*/
+  overflow: hidden;
+}
+
+.card:nth-child(3n) {
+  margin-right: 0;
+}
+
+.card__image {
+  width: 100%;
+}
+
+.card__heading {
+  /*CC0 Licence image [https://www.pexels.com/photo/skyscrapers-buildings-architecture-sky-97130/]*/
+  background-image: url('../../images/buildings.jpeg');
+  /*url relative to this file*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  overflow: hidden;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .25);
+}
+
+.card__text,
+.card__footer {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.card__title {
+  font-size: 18px;
+}
+
+.card__link {
+  /*Style as a button*/
+  padding: 7px 24px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  background-color: #0277BD;
+  transition: background-color 100ms;
+}
+
+.card__link:hover,
+.card__link:focus {
+  background-color: #0288D1;
+}
+
+.card__link:active {
+  background-color: #039BE5;
+}
