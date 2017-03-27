@@ -42,7 +42,7 @@ students.forEach(function(student){
 
 });
 
-//Highlight based on totals
+// Highlight based on totals
 students.forEach(function(student){
   var totalCol = student.querySelector('td:last-child');
   var total = Number(totalCol.textContent);
@@ -68,3 +68,39 @@ students.forEach(function(student){
 
 
 // count how many students achieved each grade
+var grades = {
+  HD : 0,
+  D : 0,
+  C : 0,
+  P : 0,
+  F : 0
+};
+students.forEach(function(student){
+  var totalCol = student.querySelector('td:last-child');
+  var total = Number(totalCol.textContent);
+
+  switch (true) {
+    case total >= 85:
+      grades.HD++;
+      break;
+    case total < 85 && total >= 75:
+      grades.D++;
+      break;
+    case total < 75 && total >= 60:
+      grades.C++;
+      break;
+    case total < 50:
+      grades.F++;
+      break;
+    default:
+      grades.P++;
+  }
+});
+
+var summaryParagraph = document.createElement('p');
+
+summaryParagraph.innerText = 'Totals for each grade: HD:'+ grades.HD +', D:'+ grades.D + ', C: '+ grades.C +', P:'+ grades.P +', F:'+ grades.F;
+
+var rowDiv = resultsTable.parentNode;
+
+rowDiv.insertBefore(summaryParagraph, resultsTable);
