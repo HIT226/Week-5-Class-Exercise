@@ -19,6 +19,11 @@
 *
 */
 
+
+/*
+* PART ONE
+*/
+
 // Get the results table
 var resultsTable = document.querySelector('#results');
 
@@ -41,6 +46,10 @@ students.forEach(function(student){
   totalCell.textContent = total;
 
 });
+
+/*
+* PART TWO
+*/
 
 // Highlight based on totals
 students.forEach(function(student){
@@ -66,6 +75,10 @@ students.forEach(function(student){
 
 });
 
+
+/*
+* PART THREE
+*/
 
 // count how many students achieved each grade
 var grades = {
@@ -97,10 +110,81 @@ students.forEach(function(student){
   }
 });
 
+//create a new paragraph
 var summaryParagraph = document.createElement('p');
 
+//set text
 summaryParagraph.innerText = 'Totals for each grade: HD:'+ grades.HD +', D:'+ grades.D + ', C: '+ grades.C +', P:'+ grades.P +', F:'+ grades.F;
 
+//get a referance to the div around our table
 var rowDiv = resultsTable.parentNode;
 
+//insert paragrpah before table
 rowDiv.insertBefore(summaryParagraph, resultsTable);
+
+
+/*
+* PART FOUR
+*/
+
+// find highest scoring student
+
+//setup a variable to hold our student and score
+var highestMark = {
+  mark: 0,
+  student: null
+};
+
+students.forEach(function(student){
+  var totalCol = student.querySelector('td:last-child');
+  var total = Number(totalCol.textContent);
+
+  if(total > highestMark.mark){
+    highestMark.mark = total;
+    highestMark.student = student;
+  }
+
+});
+// get the students name
+var studentName = highestMark.student.querySelector('th').innerText;
+// update the summary paragraph
+summaryParagraph.innerHTML = 'Congradulations to ' + studentName + ' For having the highest mark in the class with a <strong>'+ highestMark.mark +'</strong>. ' + summaryParagraph.innerHTML;
+
+
+/*
+* PART FIVE
+*/
+
+// find all failing students
+var failingStudents = [];
+students.forEach(function(student){
+  var totalCol = student.querySelector('td:last-child');
+  var total = Number(totalCol.textContent);
+
+  if(total < 50){
+    var failingStudentName = student.querySelector('th').innerText;
+    failingStudents.push(failingStudentName);
+  }
+});
+
+// create an aside to house our message
+var failingMessage = document.createElement('aside');
+
+//give it a title
+failingMessage.innerHTML = '<h2>These students need to study harder</h2>';
+
+//create a list for our student names
+var failingList = document.createElement('ul');
+
+// add our failing students to the list
+failingStudents.forEach(function(studentName){
+    var listItem = document.createElement('li');
+    listItem.innerText = studentName;
+    failingList.appendChild(listItem);
+});
+
+// add the list to our aside
+failingMessage.appendChild(failingList);
+
+//add our aside beofore the table
+rowDiv.insertBefore(failingMessage, resultsTable);
